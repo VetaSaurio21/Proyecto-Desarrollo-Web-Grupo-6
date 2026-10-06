@@ -19,28 +19,10 @@ Además, cuenta con una sección de contacto y una interfaz adaptada para facili
 - Node.js
 - npm (incluido con Node.js)
 
-## Instalación y ejecución
+- ## Instalación y ejecución
+Para ejecutar el proyecto localmente:
 
-```bash
-# 1. Entrar a la carpeta del proyecto
-cd Ferreteria-El-Constructor
-
-# 2. Instalar las dependencias
-npm install
-
-# 3. Levantar el servidor de desarrollo
-npm run dev
-
-Luego abrir en el navegador la dirección que muestra la terminal, normalmente:
-http://localhost:5173
-
-Para generar la versión de producción:
-npm run build
-
-Para visualizar la versión compilada:
-npm run preview
-
-Estructura del proyecto
+- ##Estructura del proyecto
 Ferreteria-El-Constructor/
 ├── index.html                  Página base de la aplicación
 ├── package.json                Dependencias y scripts del proyecto
@@ -58,27 +40,25 @@ Ferreteria-El-Constructor/
         ├── Products.jsx        Sección donde se muestran los productos
         └── ProductCard.jsx     Tarjeta individual de cada producto
 
-Funcionalidades
-| **Funcionalidad** | **Cómo se implementa** |
-| --- | --- |
-| Visualización de productos | Los productos se almacenan en `App.jsx` y se muestran mediante `Products` y `ProductCard` |
-| Agregar al carrito | El botón de cada producto ejecuta la función `addToCart` |
-| Aumentar cantidad | El botón `+` incrementa la cantidad del producto seleccionado |
-| Disminuir cantidad | El botón `−` reduce la cantidad y elimina el producto cuando llega a cero |
-| Eliminar producto | El botón `Eliminar` remueve el producto del carrito |
-| Vaciar carrito | El botón `Vaciar carrito` elimina todos los productos |
-| Cálculo del total | El total se obtiene multiplicando el precio por la cantidad de cada producto |
-| Contador del carrito | Se muestra la cantidad total de productos agregados |
-| Resumen de compra | Se muestran los productos, cantidades y total antes de confirmar |
-| Finalizar compra | El cliente completa sus datos mediante un formulario |
-| Validación del formulario | Se validan los campos obligatorios antes de confirmar la compra |
-| Confirmación de compra | Después de completar el formulario se muestra un mensaje de compra realizada |
-| Sección de contacto | El cliente puede visualizar los datos de contacto |
-| Navegación | El menú permite desplazarse entre las diferentes secciones de la página |
+ - ## Funcionalidades
+Visualización de productos: Los productos se almacenan en App.jsx y se muestran mediante los componentes Products y ProductCard.
+Agregar al carrito: Cada producto cuenta con un botón que permite agregarlo al carrito.
+Aumentar cantidad: El botón + incrementa la cantidad del producto seleccionado.
+Disminuir cantidad: El botón − reduce la cantidad y elimina el producto cuando llega a cero.
+Eliminar producto: Permite remover un producto específico del carrito.
+Vaciar carrito: Permite eliminar todos los productos agregados.
+Cálculo del total: El sistema calcula automáticamente el precio total considerando el precio y la cantidad de cada producto.
+Contador del carrito: Muestra la cantidad total de productos agregados.
+Resumen de compra: Permite revisar los productos, cantidades y total antes de confirmar.
+Finalizar compra: El cliente puede ingresar sus datos mediante un formulario.
+Validación del formulario: Se validan los campos obligatorios antes de confirmar la compra.
+Confirmación de compra: Después de completar correctamente el formulario se muestra un mensaje de compra realizada.
+Sección de contacto: Permite visualizar la información de contacto de la ferretería.
+Navegación: El menú permite desplazarse entre las diferentes secciones de la página.
 
-Componentes de React
+- ## Componentes de React
 
-Header
+- Header
 Componente encargado del encabezado y navegación principal del sitio. También muestra el acceso al carrito junto con la cantidad de productos agregados.
 Products
 Componente encargado de recibir la lista de productos y generar las tarjetas correspondientes.
@@ -88,3 +68,14 @@ Footer
 Componente encargado del pie de página de la aplicación.
 Manejo del carrito
 El carrito se administra mediante el estado de React:
+
+Relación con el proyecto
+El módulo representa la sección de tienda y compra de productos de la Ferretería El Constructor.
+Su objetivo es permitir que el cliente pueda recorrer el catálogo de herramientas, seleccionar los productos que necesita y completar un flujo básico de compra mediante una interfaz desarrollada en React.
+Datos de prueba
+Los productos, precios, descripciones e imágenes utilizados actualmente corresponden a datos de prueba definidos dentro de la aplicación.
+En una implementación futura, estos datos podrían ser reemplazados por información obtenida desde un backend o una API.
+Autor
+Omar Hernández Rangel
+Proyecto de Desarrollo Web y Móvil
+Universidad Andrés Bello 
