@@ -1,16 +1,59 @@
-# React + Vite
+# Ferretería El Constructor
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Descripción
 
-Currently, two official plugins are available:
+Módulo web desarrollado para **Ferretería El Constructor**, una tienda dedicada a la venta de herramientas y productos para proyectos de construcción y reparación.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+El proyecto permite visualizar los productos disponibles, agregarlos a un carrito de compras, modificar cantidades y realizar el proceso de compra.
 
-## React Compiler
+## Tecnologías utilizadas
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React
+- Vite
+- JavaScript
+- HTML
+- CSS
 
-## Expanding the Oxlint configuration
+## Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+- Visualización de productos.
+- Información y precios de cada producto.
+- Carrito de compras.
+- Agregar productos al carrito.
+- Aumentar y disminuir cantidades.
+- Eliminar productos del carrito.
+- Vaciar el carrito.
+- Cálculo automático del total.
+- Formulario para finalizar la compra.
+- Confirmación de compra.
+- Sección de contacto.
+
+## Productos
+
+El proyecto incluye diferentes herramientas, entre ellas:
+
+- Martillo
+- Taladro
+- Destornillador
+- Llave inglesa
+- Cinta métrica
+- Sierra manual
+
+## Estructura del proyecto
+
+```text
+Ferreteria-El-Constructor/
+├── public/
+│   └── images/
+├── src/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   ├── ProductCard.jsx
+│   │   └── Products.jsx
+│   ├── App.jsx
+│   ├── App.css
+│   └── main.jsx
+├── package.json
+├── index.html
+└── vite.config.js
