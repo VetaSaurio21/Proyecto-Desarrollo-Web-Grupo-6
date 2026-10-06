@@ -1,0 +1,219 @@
+.barra-superior {
+  background-color: #0a1f44;
+  padding: 20px;
+  text-align: center;
+}
+
+.barra-superior .logo {
+  width: 240px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.barra-superior .menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 15px;
+}
+
+.barra-superior .menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.barra-superior .menu a:hover {
+  color: #f4b400;
+}
+
+.registro-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 40px auto;
+}
+
+.columna-formulario,
+.columna-ferreteria {
+  min-width: 0;
+}
+
+.columna-formulario h1 {
+  width: fit-content;
+  margin: 25px auto 10px;
+  padding-bottom: 8px;
+  border-bottom: 4px solid #f4b400;
+  text-align: center;
+}
+
+.columna-formulario > p {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.columna-formulario form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 320px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.columna-formulario label {
+  font-weight: bold;
+  margin-top: 6px;
+}
+
+.columna-formulario input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.columna-formulario input:focus {
+  outline: 2px solid #f4b400;
+  outline-offset: 2px;
+}
+
+.columna-formulario button {
+  align-self: center;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #d97706;
+  color: white;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.columna-formulario button:hover {
+  background-color: #b45309;
+}
+
+.columna-ferreteria {
+  min-height: 580px;
+  border-radius: 18px;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      90deg,
+      rgba(255, 248, 235, 0.98) 0%,
+      rgba(255, 248, 235, 0.9) 60%,
+      rgba(255, 248, 235, 0.15) 100%
+    ),
+    url('/img/Herramientas.png');
+  background-size: cover;
+  background-position: center;
+}
+
+.contenido-ferreteria {
+  width: 100%;
+  max-width: 380px;
+  padding: 30px;
+}
+
+.columna-ferreteria h2 {
+  margin: 0 0 20px;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.15;
+}
+
+.columna-ferreteria h2 span {
+  color: #d97706;
+}
+
+.texto-derecha {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 30px;
+}
+
+.beneficio {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.icono-beneficio {
+  flex-shrink: 0;
+  font-size: 28px;
+}
+
+.beneficio h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.beneficio p {
+  margin: 5px 0 0;
+  line-height: 1.5;
+}
+
+.frase-ferreteria {
+  margin-top: 35px;
+  font-family: cursive;
+  font-size: 28px;
+}
+
+/* Pie de página: barra azul y textos en horizontal */
+.pie-pagina {
+  width: 100%;
+  background-color: #0a1f44;
+  color: white;
+  padding: 20px;
+  margin-top: 40px;
+}
+
+.footer-contenido {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  text-align: center;
+}
+
+.footer-contenido p {
+  margin: 0;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 768px) {
+  .registro-layout {
+    grid-template-columns: 1fr;
+    width: 94%;
+    gap: 25px;
+    margin: 25px auto;
+  }
+
+  .columna-formulario h1 {
+    font-size: 26px;
+  }
+
+  .columna-ferreteria {
+    min-height: 480px;
+  }
+
+  .contenido-ferreteria {
+    padding: 25px;
+  }
+}
