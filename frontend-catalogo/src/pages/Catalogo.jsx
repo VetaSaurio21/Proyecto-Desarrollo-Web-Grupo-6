@@ -17,7 +17,21 @@ function Catalogo() {
             Encuentra herramientas, materiales y productos para tus proyectos.
           </p>
 
-            <div className="mt-8 grid grid-cols-4 gap-4">
+            <div className="mt-8 rounded-lg border border-slate-200 bg-slate-50 p-6">
+                <div className="flex items-center justify-between">
+                    <h2 className="font-bold text-[#0f2747]">
+                        Filtrar productos
+                    </h2>
+
+                    <button
+                        type="button"
+                        className="font-semibold text-[#d49d00] transition-colors hover:text-[#0f2747]"
+                    >
+                        Limpiar filtros
+                    </button>
+                </div>
+
+            <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div>
                     <label
                         htmlFor="categoria"
@@ -97,8 +111,9 @@ function Catalogo() {
                     </select>
                 </div>
             </div>
+            </div>
 
-            <div className="mt-10 grid grid-cols-3 gap-6">
+            <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {productos.map((producto) => (
                     <ProductoCard
                         key={producto.id}

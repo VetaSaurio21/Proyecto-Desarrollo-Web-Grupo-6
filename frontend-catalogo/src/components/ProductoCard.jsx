@@ -13,8 +13,8 @@ function ProductoCard({
   })
 
   return (
-    <article className="overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">
-      <div className="flex h-52 items-center justify-center bg-white p-4">
+    <article className="flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+      <div className="flex h-52 items-center justify-center border-b border-slate-100 bg-white p-4">
         <img
           src={imagen}
           alt={nombre}
@@ -22,7 +22,7 @@ function ProductoCard({
         />
       </div>
 
-      <div className="p-5">
+      <div className="flex flex-1 flex-col p-5">
         <p className="text-sm text-slate-500">
           {categoria} · {marca}
         </p>
@@ -35,18 +35,18 @@ function ProductoCard({
           {descripcion}
         </p>
 
-        <p className="mt-4 text-2xl font-bold text-[#0f2747]">
+        <p className="mt-auto pt-4 text-2xl font-bold text-[#0f2747]">
           {precioFormateado}
         </p>
 
         <p
-            className={`mt-2 font-semibold ${
-                disponibilidad === 'Disponible'
-                    ? 'text-green-600'
-                    : 'text-red-600'
-    }`}
+          className={`mt-2 font-semibold ${
+            disponibilidad === 'Disponible'
+              ? 'text-green-600'
+              : 'text-red-600'
+          }`}
         >
-            {disponibilidad}
+          {disponibilidad}
         </p>
 
         <button
