@@ -3,9 +3,6 @@ import mongoose from 'mongoose';
 import connectDB from '../db.js';
 import Producto from '../models/producto.js';
 
-// Importamos los 12 productos originales de nuestro frontend.
-//import productos from '../../../frontend-catalogo/src/data/productos.js';
-
 // Importamos los datos iniciales incluidos en nuestro backend.
 import productos from '../data/productosIniciales.js';
 

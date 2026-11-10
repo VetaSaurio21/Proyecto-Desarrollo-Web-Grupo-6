@@ -3,20 +3,54 @@ import Producto from '../models/producto.js';
 // Controlador para obtener todos los productos.
 export const obtenerProductos = async (req, res) => {
   try {
-    
-    // Obtenemos el parámetro categoria enviado en la URL.
-    const { categoria } = req.query;
+    // Obtenemos los parámetros enviados en la URL.
+    const { categoria, marca, precio, disponibilidad } = req.query;
 
-    // Preparamos el filtro para consultar MongoDB.
+    // Construimos el filtro que utilizaremos en MongoDB.
     const filtro = {};
 
-    // Si recibimos una categoría, la agregamos al filtro.
+    // Filtro por categoría.
     if (typeof categoria === 'string' && categoria.trim() !== '') {
       filtro.categoria = categoria.trim();
     }
 
-    // Consultamos los productos que coincidan con el filtro.
-    const productos = await Producto.find(filtro);
+    // Filtro por marca.
+    if (typeof marca === 'string' && marca.trim() !== '') {
+      filtro.marca = marca.trim();
+    }
+
+    // Filtro por disponibilidad.
+    if (typeof disponibilidad === 'string' && disponibilidad.trim() !== '') {
+      const estado = disponibilidad.trim();
+
+      if (!['Disponible', 'Agotado'].includes(estado)) {
+        return res.status(400).json({
+          mensaje: 'La disponibilidad debe ser Disponible o Agotado'
+        });
+      }
+
+      filtro.disponibilidad = estado;
+    }
+
+    // Filtro por rango de precio.
+    if (typeof precio === 'string' && precio.trim() !== '') {
+      const rango = precio.trim().toLowerCase();
+
+      if (rango === 'bajo') {
+        filtro.precio = { $lte: 20000 };
+      } else if (rango === 'medio') {
+        filtro.precio = { $gte: 20001, $lte: 50000 };
+      } else if (rango === 'alto') {
+        filtro.precio = { $gt: 50000 };
+      } else {
+        return res.status(400).json({
+          mensaje: 'El precio debe ser bajo, medio o alto'
+        });
+      }
+    }
+
+    // Consultamos los productos que cumplan todas las condiciones.
+    const productos = await Producto.find(filtro).sort({ id: 1 });
 
     // Respondemos con los productos encontrados.
     return res.status(200).json(productos);
@@ -32,7 +66,6 @@ export const obtenerProductos = async (req, res) => {
   }
 };
 
- 
 // Controlador para consultar un producto por su identificador.
 export const obtenerProductoPorId = async (req, res) => {
   try {
