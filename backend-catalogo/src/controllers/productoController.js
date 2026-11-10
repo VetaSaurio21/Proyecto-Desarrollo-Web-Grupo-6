@@ -32,3 +32,38 @@ export const obtenerProductos = async (req, res) => {
   }
 };
 
+ 
+// Controlador para consultar un producto por su identificador.
+export const obtenerProductoPorId = async (req, res) => {
+  try {
+    // Obtenemos el identificador enviado en la URL.
+    const { id } = req.params;
+
+    // Validamos que sea un número entero positivo.
+    if (!/^[1-9]\d*$/.test(id)) {
+      return res.status(400).json({
+        mensaje: 'El identificador del producto debe ser un número entero positivo'
+      });
+    }
+
+    // Buscamos un único producto utilizando su campo id.
+    const producto = await Producto.findOne({ id: Number(id) });
+
+    // Si no encontramos el producto, respondemos con HTTP 404.
+    if (!producto) {
+      return res.status(404).json({
+        mensaje: 'Producto no encontrado'
+      });
+    }
+
+    // Si existe, devolvemos el producto encontrado.
+    return res.status(200).json(producto);
+
+  } catch (error) {
+    console.error('Error al obtener el producto:', error.message);
+
+    return res.status(500).json({
+      mensaje: 'Error interno al obtener el producto'
+    });
+  }
+};
