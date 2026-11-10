@@ -100,3 +100,149 @@ export const obtenerProductoPorId = async (req, res) => {
     });
   }
 };
+
+// Controlador para registrar un nuevo producto.
+export const crearProducto = async (req, res) => {
+  try {
+    // Obtenemos los datos enviados desde Postman.
+    const datosProducto = req.body;
+
+    // Creamos un documento utilizando el modelo Producto.
+    const nuevoProducto = new Producto(datosProducto);
+
+    // Guardamos el documento en MongoDB.
+    const productoGuardado = await nuevoProducto.save();
+
+    // Respondemos con HTTP 201 y el producto registrado.
+    return res.status(201).json({
+      mensaje: 'Producto creado correctamente',
+      producto: productoGuardado
+    });
+
+  } catch (error) {
+    // Manejamos campos faltantes o valores que no cumplen el esquema.
+    if (error.name === 'ValidationError' || error.name === 'CastError') {
+      return res.status(400).json({
+        mensaje: 'Los datos del producto no son válidos',
+        detalle: error.message
+      });
+    }
+
+    // Detectamos un identificador duplicado en MongoDB.
+    if (error.code === 11000) {
+      return res.status(409).json({
+        mensaje: 'Ya existe un producto con ese identificador'
+      });
+    }
+
+    console.error('Error al crear el producto:', error.message);
+
+    return res.status(500).json({
+      mensaje: 'Error interno al crear el producto'
+    });
+  }
+};
+
+// Controlador para actualizar un producto existente.
+export const actualizarProducto = async (req, res) => {
+  try {
+    // Obtenemos el identificador enviado en la URL.
+    const { id } = req.params;
+
+    // Validamos que el identificador sea un entero positivo.
+    if (!/^[1-9]\d*$/.test(id)) {
+      return res.status(400).json({
+        mensaje: 'El identificador del producto debe ser un número entero positivo'
+      });
+    }
+
+    // Obtenemos los campos que deseamos actualizar.
+    const datosActualizados = req.body;
+
+    // Impedimos modificar el identificador original del producto.
+    if (Object.hasOwn(datosActualizados, 'id') ||
+        Object.hasOwn(datosActualizados, '_id')) {
+      return res.status(400).json({
+        mensaje: 'No se permite modificar el identificador del producto'
+      });
+    }
+
+    // Buscamos el producto por su identificador y aplicamos los cambios.
+    const productoActualizado = await Producto.findOneAndUpdate(
+      { id: Number(id) },
+      { $set: datosActualizados },
+      {
+        returnDocument: 'after',
+        runValidators: true
+      }
+    );
+
+    // Si el producto no existe, devolvemos HTTP 404.
+    if (!productoActualizado) {
+      return res.status(404).json({
+        mensaje: 'Producto no encontrado'
+      });
+    }
+
+    // Respondemos con el producto actualizado.
+    return res.status(200).json({
+      mensaje: 'Producto actualizado correctamente',
+      producto: productoActualizado
+    });
+
+  } catch (error) {
+    if (error.name === 'ValidationError' ||
+        error.name === 'CastError') {
+      return res.status(400).json({
+        mensaje: 'Los datos del producto no son válidos',
+        detalle: error.message
+      });
+    }
+
+    console.error('Error al actualizar el producto:', error.message);
+
+    return res.status(500).json({
+      mensaje: 'Error interno al actualizar el producto'
+    });
+  }
+};
+
+// Controlador para eliminar un producto existente.
+export const eliminarProducto = async (req, res) => {
+  try {
+    // Obtenemos el identificador enviado en la URL.
+    const { id } = req.params;
+
+    // Validamos que sea un número entero positivo.
+    if (!/^[1-9]\d*$/.test(id)) {
+      return res.status(400).json({
+        mensaje: 'El identificador del producto debe ser un número entero positivo'
+      });
+    }
+
+    // Buscamos y eliminamos el producto mediante su campo id.
+    const productoEliminado = await Producto.findOneAndDelete({
+      id: Number(id)
+    });
+
+    // Si no existe, informamos que no fue encontrado.
+    if (!productoEliminado) {
+      return res.status(404).json({
+        mensaje: 'Producto no encontrado'
+      });
+    }
+
+    // Confirmamos la eliminación.
+    return res.status(200).json({
+      mensaje: 'Producto eliminado correctamente',
+      producto: productoEliminado
+    });
+
+  } catch (error) {
+    console.error('Error al eliminar el producto:', error.message);
+
+    return res.status(500).json({
+      mensaje: 'Error interno al eliminar el producto'
+    });
+  }
+};
